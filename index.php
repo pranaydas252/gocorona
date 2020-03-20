@@ -90,11 +90,11 @@
 				</div>
 
 				<div class="card table-responsive" style="height: 900px;">
-					
+					<p class="text-center">India data: As of <span id="asof_india"></span></p>
 					<div class="total_stats" id="india_stats">
 						
 					</div>
-					<p class="text-center">India data: As of <span id="asof_india"></span></p>
+					
 					<div class="tb_parent">
 						<table class="table table-hover">
 						  <thead class="thead-dark">
