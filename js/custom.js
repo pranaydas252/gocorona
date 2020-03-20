@@ -14,32 +14,24 @@ var labels = [];
 var inf = [];
 
 $.ajax({
-	url: "https://covid2019-api.herokuapp.com/v2/current",
-	dataType: "json",
-
-	success: function(response)
-	{    
-		document.getElementById('asof_countries').innerHTML = response.dt;
-		for(var i=0;i<response.data.length-1;i++)
-		{
-			countries_stats.innerHTML += "<tr><th scope='row'>" + response.data[i].location + "</th><td>"
-			+ Number(response.data[i].confirmed).toLocaleString() + "</td><td>" + Number(response.data[i].deaths).toLocaleString() + "</td><td>" + Number(response.data[i].recovered).toLocaleString() + "</td></tr>";
-		}
-	},
-
-	type: 'GET'
-});
-
-$.ajax({
 	url: "https://api.rootnet.in/covid19-in/stats/latest",
 	dataType: "json",
 	type: 'GET',
 	success: function(response)
 	{    
-		document.getElementById('asof_india').innerHTML = response.lastRefreshed.substr(0,10);
+		$.ajax({
+			url: "./api/search_by_country.php",
+			dataType: "json",
+			type: 'POST',
+			data: {country:'india'},
+			success: function(response)
+			{    
+				india_stats.innerHTML += "<div class='single_stat'><p>Infected</p><h5>" + response.latest_stat_by_country[0].total_cases + "</h5></div><div class='single_stat'><p>Deaths</p><h5>"
+				+ response.latest_stat_by_country[0].total_deaths + "</h5></div><div class='single_stat'><p>Recovered</p><h5>" + response.latest_stat_by_country[0].total_recovered + "</h5></div>";
+			}
+		});
 
-		india_stats.innerHTML += "<div class='single_stat'><p>Infected (Indian)</p><h5>" + Number(response.data.summary.confirmedCasesIndian).toLocaleString() + "</h5></div><div class='single_stat'><p>Infected (Foreign)</p><h5>" + Number(response.data.summary.confirmedCasesForeign).toLocaleString() + "</h5></div><div class='single_stat'><p>Deaths</p><br><h5>"
-		+ Number(response.data.summary.deaths).toLocaleString() + "</h5></div><div class='single_stat'><p>Recovered</p><br><h5>" + Number(response.data.summary.discharged).toLocaleString() + "</h5></div>";
+		document.getElementById('asof_india').innerHTML = response.lastRefreshed.substr(0,10);
 
 		for(var i=0;i<response.data.regional.length-1;i++)
 		{
@@ -101,17 +93,30 @@ $.ajax({
 });
 
 $.ajax({
-	url: "https://covid2019-api.herokuapp.com/v2/total",
+	url: "./api/all_country_cases.php",
 	dataType: "json",
-
+	type: 'GET',
 	success: function(response)
 	{    
-		total_stats.innerHTML += "<div class='single_stat'><p>Infected</p><h5>" + Number(response.data.confirmed).toLocaleString() + "</h5></div><div class='single_stat'><p>Deaths</p><h5>"
-		+ Number(response.data.deaths).toLocaleString() + "</h5></div><div class='single_stat'><p>Recovered</p><h5>" + Number(response.data.recovered).toLocaleString() + "</h5></div>";
-	},
+		for(var i=0;i<response.countries_stat.length-1;i++)
+		{
+			countries_stats.innerHTML += "<tr><th scope='row'>" + response.countries_stat[i].country_name + "</th><td>"
+			+ response.countries_stat[i].cases + "</td><td>" + response.countries_stat[i].deaths + "</td><td>" + response.countries_stat[i].total_recovered + "</td></tr>";
+		}
+	}
+});
 
-
-	type: 'GET'
+$.ajax({
+	url: "./api/get_stats_all.php",
+	dataType: "json",
+	type: 'GET',
+	success: function(response)
+	{    
+		document.getElementById('asof_countries').innerHTML = response.statistic_taken_at;
+		
+		total_stats.innerHTML += "<div class='single_stat'><p>Infected</p><h5>" + response.total_cases + "</h5></div><div class='single_stat'><p>Deaths</p><h5>"
+		+ response.total_deaths + "</h5></div><div class='single_stat'><p>Recovered</p><h5>" + response.total_recovered + "</h5></div>";
+	}
 });
 
 search_button.addEventListener('click', function() {
@@ -127,27 +132,25 @@ search_button.addEventListener('click', function() {
 			var total_pop = parseInt(data[0].population);
 
 			$.ajax({
-				url: "https://covid2019-api.herokuapp.com/country/"+ search,
+				url: "./api/search_by_country.php",
 				dataType: "json",
-				type: 'GET',
+				type: 'POST',
+				data: {country:search},
 				success: function(response)
 				{    
-					var key_name = Object.keys(response)[0];
-
-					var confirmed = parseInt(response[key_name].confirmed);
-					var deaths = parseInt(response[key_name].deaths);
-					var recovered = parseInt(response[key_name].recovered);
+					var confirmed = parseInt(response.latest_stat_by_country[0].total_cases.replace(/,/g, ''));
+					var deaths = parseInt(response.latest_stat_by_country[0].total_deaths.replace(/,/g, ''));
+					var recovered = parseInt(response.latest_stat_by_country[0].total_recovered.replace(/,/g, ''));
 					var non_inf = total_pop - (confirmed+deaths+recovered);
 
 					$('#country_pop').html(Number(total_pop).toLocaleString());
 					$('#country_safe').text(Number(non_inf).toLocaleString());
-					$('#country_inf').text(Number(confirmed).toLocaleString());
-					$('#country_death').text(Number(deaths).toLocaleString());
-					$('#country_rec').text(Number(recovered).toLocaleString());
+					$('#country_inf').text(response.latest_stat_by_country[0].total_cases);
+					$('#country_death').text(response.latest_stat_by_country[0].total_deaths);
+					$('#country_rec').text(response.latest_stat_by_country[0].total_recovered);
 
 					$('#total_pop').show(400);
 					$(stats_div).show(800);
-
 				}
 			});
 		}
@@ -167,4 +170,6 @@ $.ajax({
 
 	}
 });
+
+
 
