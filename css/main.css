@@ -229,18 +229,6 @@ a:hover
 	transition: .5s;
 }
 
-@media only screen and (max-width: 500px) 
-{
-	.news_card .single_news_card .news_title
-	{
-		font-size: 14px;
-	}
-   .news_card .single_news_card .news_desc
-	{
-		display: none;
-	}
-}
-
 .graph_card
 {	
 	height: auto;
@@ -310,4 +298,21 @@ footer p a:hover {
 .social span {
     font-size: 28px;
     margin: 15px 25px 0;
+}
+
+@media only screen and (max-width: 500px) 
+{
+	.news_card .single_news_card .news_title
+	{
+		font-size: 14px;
+	}
+   .news_card .single_news_card .news_desc
+	{
+		display: none;
+	}
+	.graph_card .graph_container
+	{
+		width: 300px;
+	    height: 278px;
+	}
 }

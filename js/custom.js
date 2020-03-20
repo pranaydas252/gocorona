@@ -14,23 +14,22 @@ var labels = [];
 var inf = [];
 
 $.ajax({
+	url: "./api/india_stats.php",
+	dataType: "json",
+	type: 'GET',
+	success: function(response)
+	{    
+		india_stats.innerHTML += "<div class='single_stat'><p>Infected</p><h5>" + response.latest_stat_by_country[0].total_cases + "</h5></div><div class='single_stat'><p>Deaths</p><h5>"
+		+ response.latest_stat_by_country[0].total_deaths + "</h5></div><div class='single_stat'><p>Recovered</p><h5>" + response.latest_stat_by_country[0].total_recovered + "</h5></div>";
+	}
+});
+
+$.ajax({
 	url: "https://api.rootnet.in/covid19-in/stats/latest",
 	dataType: "json",
 	type: 'GET',
 	success: function(response)
 	{    
-		$.ajax({
-			url: "./api/search_by_country.php",
-			dataType: "json",
-			type: 'POST',
-			data: {country:'india'},
-			success: function(response)
-			{    
-				india_stats.innerHTML += "<div class='single_stat'><p>Infected</p><h5>" + response.latest_stat_by_country[0].total_cases + "</h5></div><div class='single_stat'><p>Deaths</p><h5>"
-				+ response.latest_stat_by_country[0].total_deaths + "</h5></div><div class='single_stat'><p>Recovered</p><h5>" + response.latest_stat_by_country[0].total_recovered + "</h5></div>";
-			}
-		});
-
 		document.getElementById('asof_india').innerHTML = response.lastRefreshed.substr(0,10);
 
 		for(var i=0;i<response.data.regional.length-1;i++)
