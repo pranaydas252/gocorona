@@ -164,7 +164,7 @@ $.ajax({
 	{    
 		for(var i=0;i<response.articles.length-1;i++)
 		{
-			news.innerHTML += "<div class='single_news_card'><div class='row' style='align-items: center;'><div class='col-md-4 col-sm-6 col-5'><div class='news_img'><img src="+response.articles[i].urlToImage+"></div></div><div class='col-md-8 col-sm-6 col-7'><h6 class='news_title'>"+response.articles[i].title+"</h6><p class='news_desc'>"+response.articles[i].description.substr(0,110)+".....</p><a href="+response.articles[i].url+" target='_blank'><button class='btn btn-primary news_read'>Read More</button></a></div></div></div>";
+			news.innerHTML += "<div class='single_news_card'><div class='row' style='align-items: center;'><div class='col-md-4 col-sm-6 col-5'><div class='news_img'><img src="+response.articles[i].urlToImage+"></div></div><div class='col-md-8 col-sm-6 col-7'><h6 class='news_title'>"+ response.articles[i].title.split(" ").splice(0,8).join(" ") +".....</h6><p class='news_desc'>"+response.articles[i].description.substr(0,110)+".....</p><a href="+response.articles[i].url+" target='_blank'><button class='btn btn-primary news_read'>Read More</button></a></div></div></div>";
 		}
 
 	}
