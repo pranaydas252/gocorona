@@ -158,7 +158,7 @@ search_button.addEventListener('click', function() {
 }, false);
 
 $.ajax({
-	url: "http://newsapi.org/v2/everything?q=coronavirus%20AND%20%22corona%20virus%22%20AND%20%22COVID-19%22&apiKey=6f105da0c6c94d63a15d10df7f17efdf",
+	url: "https://newsapi.org/v2/everything?q=coronavirus%20AND%20%22corona%20virus%22%20AND%20%22COVID-19%22&apiKey=6f105da0c6c94d63a15d10df7f17efdf",
 	dataType: "json",
 	type: 'GET',
 	success: function(response)
