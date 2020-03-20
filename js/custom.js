@@ -140,21 +140,30 @@ search_button.addEventListener('click', function() {
 					var confirmed = parseInt(response.latest_stat_by_country[0].total_cases.replace(/,/g, ''));
 					var deaths = parseInt(response.latest_stat_by_country[0].total_deaths.replace(/,/g, ''));
 					var recovered = parseInt(response.latest_stat_by_country[0].total_recovered.replace(/,/g, ''));
-					var non_inf = total_pop - (confirmed+deaths+recovered);
+					
+					$('#country_pop').text(Number(total_pop).toLocaleString());
+					$('#country_inf').text(checkNull(response.latest_stat_by_country[0].total_cases));
+					$('#country_death').text(checkNull(response.latest_stat_by_country[0].total_deaths));
+					$('#country_rec').text(checkNull(response.latest_stat_by_country[0].total_recovered));
 
-					$('#country_pop').html(Number(total_pop).toLocaleString());
-					$('#country_safe').text(Number(non_inf).toLocaleString());
-					$('#country_inf').text(response.latest_stat_by_country[0].total_cases);
-					$('#country_death').text(response.latest_stat_by_country[0].total_deaths);
-					$('#country_rec').text(response.latest_stat_by_country[0].total_recovered);
-
-					$('#total_pop').show(400);
 					$(stats_div).show(800);
 				}
 			});
 		}
 	});
 }, false);
+
+function checkNull(valueStr)
+{
+	if (valueStr == "") 
+	{
+		return '0';
+	}
+	else
+	{
+		return valueStr;
+	}
+}
 
 $.ajax({
 	url: "https://newsapi.org/v2/everything?q=coronavirus%20AND%20%22corona%20virus%22%20AND%20%22COVID-19%22&apiKey=6f105da0c6c94d63a15d10df7f17efdf",

@@ -61,12 +61,11 @@
 			           	</button>
 			        </form>
 	        		
-	        		<p class="text-center" id="total_pop" style="display: none;">Total Population: <span id="country_pop"></span></p>
         			<div class="row" id="country_search_stats" style="display: none;">
         				<div class="col-md-3 col-sm-6 col-6">
         					<div class="single_country_stat" style="background: #2196F3;">
-        						<p>Non Infected</p>
-								<h5 id="country_safe"></h5>
+        						<p>Population</p>
+								<h5 id="country_pop"></h5>
         					</div>
         				</div>
         				<div class="col-md-3 col-sm-6 col-6">
