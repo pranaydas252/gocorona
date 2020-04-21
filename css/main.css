@@ -273,17 +273,39 @@ footer p a:hover {
 
 @media only screen and (max-width: 500px) 
 {
-	.news_card .single_news_card .news_title
-	{
-		font-size: 14px;
-	}
-   .news_card .single_news_card .news_desc
-	{
-		display: none;
-	}
 	.graph_card .graph_container
 	{
 		width: 300px;
 	    height: 278px;
+	}
+	.header_title h2 
+	{
+	    font-size: 14px;
+	}
+	.stats_main 
+	{
+    	padding: 18px;
+	}
+	.card p, .search_card p, .news_card p, .graph_card p 
+	{
+	    font-size: 14px;
+	    margin-bottom: 20px;
+	}
+	.total_stats .single_stat p 
+	{
+	    margin-bottom: 8px;
+	    font-size: 14px;
+	}
+	.card .tb_parent thead th 
+	{
+	    font-size: 14px;
+	}
+	.table th, .table td {
+	    font-size: 14px;
+	}
+	.total_stats {
+	    display: grid;
+	    grid-template-columns: 1fr 1fr;
+	    grid-gap: 12px;
 	}
 }
