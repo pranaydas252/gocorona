@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
 
 html, body
 {
@@ -8,8 +8,8 @@ html, body
 
 body
 {
-	background: #00B4DB;
-	font-family: Open Sans, sans-serif;
+	background: #e6e6e6;
+	font-family: Lato, sans-serif;
 	width: 100%; 	
 }
 
@@ -32,21 +32,24 @@ a:hover
 
 .header_title
 {
-	background: #212121;
+	background: #ffffff;
+	box-shadow: 0 -7px 12px 0px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 -7px 12px 0px rgba(0,0,0,0.5);
 }
 
 .header_title h2
 {
-	font-weight: 600;
-	font-size: 22px;
+	font-weight: 700;
+	font-size: 18px;
 	padding: 18px 0;
 	margin: 0;
-	color: #ffffff;
+	text-transform: uppercase;
+	color: #0f0f0f;
 }
 
 .stats_main
 {
-	padding: 18px 15px;
+	padding: 50px 30px;
 }
 
 .card
@@ -55,7 +58,9 @@ a:hover
 	background: #ffffff;
 	border-radius: 10px;
 	padding: 12px 8px;
-	margin-bottom: 25px;
+	margin-bottom: 40px;
+	box-shadow: 0 10px 35px rgba(0,0,0,.1);
+    -webkit-box-shadow: 0 10px 35px rgba(0,0,0,.1);
 }
 
 .card p, .search_card p, .news_card p, .graph_card p
@@ -63,6 +68,7 @@ a:hover
 	font-size: 18px;
     text-transform: uppercase;
     font-weight: 700;
+    margin-bottom: 25px;
 }
 
 .card .tb_parent
@@ -82,26 +88,84 @@ a:hover
 	display: flex;
 	flex-direction: row;
 	height: auto;
-	margin-bottom: 15px;
+	margin-bottom: 30px;
 	align-items: center;
 }
 
 .total_stats .single_stat
 {
-	background: #c62828;
-    color: #f8f8f8;
+	background: #f5f5f5;
     height: 100%;
     width: 100%;
     text-align: center;
     padding: 10px;
     margin: 5px;
     border-radius: 8px;
+    font-size: 25px;
+    border-bottom: 2px solid;
+}
+
+.total_stats .single_stat .newstat
+{
+	font-size: 14px;
+	margin-left: 15px;
+}
+
+.total_stats .single_stat .newstat i
+{
+	font-size: 15px;
+    margin-right: 3px;
+    font-weight: 100;
+}
+
+.country_stat
+{
+	margin-left: 20px;
+	font-size: 12px;
+    color: #ff073a;
+    font-weight: 700;
+}
+
+.country_stat i
+{
+	font-size: 12px;
+    margin-right: 3px;
+    color: #ff073a;
+    font-weight: 100;
+}
+
+.total_stats .single_stat:nth-child(1)
+{
+    color: #ff073a;
+}
+
+.total_stats .single_stat:nth-child(2)
+{
+    color: #007bff;
+}
+
+.total_stats .single_stat:nth-child(3)
+{
+    color: #28a745;
+}
+
+.total_stats .single_stat:nth-child(4)
+{
+    color: #5c5c5c;
 }
 
 .total_stats .single_stat p
 {
 	margin-bottom: 5px;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.total_stats .single_stat h5
+{
+	margin-bottom: 5px;
 	font-size: 16px;
+	font-weight: 700;
 }
 
 /* width */
@@ -124,109 +188,16 @@ a:hover
   background: #555;
 }
 
-.search_card
+.table tr.states td
 {
-	height: auto;
-	background-color: #ffffff;
-	border-radius: 10px;
-	padding: 12px 8px;
-	margin-bottom: 25px;
+	font-size: 18px;
+	font-weight: 700;
 }
 
-.search_card .form
+.table tr.districts td
 {
-	margin: 15px 0;
-	display: grid;
-	grid-gap: 20px;
-	grid-template-columns: 3fr 1fr;
-}
-
-.search_card .form input
-{
-	border: 1px solid #282828;
-}
-
-.single_country_stat
-{
-    color: #f8f8f8;
-    width: 100%;
-    text-align: center;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-}
-
-.single_country_stat p
-{
-    font-size: 16px;
-}
-
-.news_card
-{
-	height: 850px;
-	background-color: #ffffff;
-	border-radius: 10px;
-	padding: 15px;
-	margin-bottom: 15px;
-}
- 
-.news_card .news_container
-{
-	height: 90%;
-	margin-bottom: 15px;
-	overflow-y: scroll;
-	overflow-x: hidden;
-}
-
-.news_card .single_news_card
-{
-	height: auto;
-	background-color: #e7e7e7;
-	border-radius: 10px;
-	padding: 15px;
-	margin-bottom: 15px;
-}
-
-.news_card .single_news_card .news_img
-{
+	font-size: 13px;
 	width: 100%;
-	margin-bottom: 15px;
-}
-
-.news_card .single_news_card .news_img img
-{
-	border-radius: 10px;
-	width: 100%;
-}
-
-.news_card .single_news_card .news_title
-{
-	text-align: left;
-	font-weight: 600;
-	line-height: 1.5;
-	margin-bottom: 20px;
-}
-
-.news_card .single_news_card .news_desc
-{
-	text-align: justify;
-    line-height: 1.5;
-    font-size: 14px;
-    text-transform: inherit;
-    font-weight: 400;
-}
-
-.news_card .single_news_card .news_read
-{
-	padding: 10px;
-	border-radius: 5px;
-	transition: .5s;
-}
-
-.news_card .single_news_card .news_read:hover
-{
-	text-decoration: none;
-	transition: .5s;
 }
 
 .graph_card
